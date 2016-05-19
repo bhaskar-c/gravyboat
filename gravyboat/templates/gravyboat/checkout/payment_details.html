@@ -1,0 +1,31 @@
+{% extends "checkout/checkout.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Payment details" %} | {{ block.super }}
+{% endblock %}
+
+{% block checkout_nav %}
+    {% include 'checkout/nav.html' with step=3 %}
+{% endblock %}
+
+{% block checkout_title %}{% trans "Enter payment details" %}{% endblock %}
+
+{% block order_contents %}{% endblock %}
+{% block shipping_address %}{% endblock %}
+{% block shipping_method %}{% endblock %}
+{% block payment_method %}{% endblock %}
+
+{% block payment_details %}
+    {% block payment_details_content %}
+        <p>{% trans "This page needs implementing within your project.  You may want to use one of Oscar's payment gateway libraries:" %}</p>
+        <ul>
+            <li><a href="https://github.com/django-gravyboat/django-gravyboat-paypal">django-gravyboat-paypal</a></li>
+            <li><a href="https://github.com/django-gravyboat/django-gravyboat-datacash">django-gravyboat-datacash</a></li>
+            <li><a href="https://github.com/django-gravyboat/django-gravyboat-gocardless">django-gravyboat-gocardless</a></li>
+            <li><a href="https://github.com/django-gravyboat/django-gravyboat-paymentexpress">django-gravyboat-paymentexpress</a></li>
+            <li><a href="https://github.com/django-gravyboat/django-gravyboat-accounts">django-gravyboat-accounts</a></li>
+        </ul>
+        <a id="view_preview" href="{% url 'checkout:preview' %}" class="btn btn-primary btn-lg">{% trans "Continue" %}</a>
+    {% endblock payment_details_content %}
+{% endblock payment_details %}
