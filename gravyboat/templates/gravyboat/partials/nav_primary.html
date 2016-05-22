@@ -1,75 +1,114 @@
-{% load currency_filters %}
+{% load staticfiles %}
 {% load category_tags %}
-{% load i18n %}
-
-<div class="navbar primary navbar-static-top navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header pull-right">
-            {# This is used in mobile view #}
-            <a class="navbar-toggle" data-toggle="collapse" data-target=".primary-collapse">
-                <span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </span>
-            </a>
-        </div>
-
-        <a class="btn btn-default navbar-btn btn-cart navbar-right visible-xs-inline-block" href="{% url 'basket:summary' %}">
-            <i class="icon-shopping-cart"></i>
-            {% trans "Basket" %}
-            {% if not request.basket.is_empty %}
-                {% if request.basket.is_tax_known %}
-                    {% blocktrans with total=request.basket.total_incl_tax|currency:request.basket.currency %}
-                        Total: {{ total }}
-                    {% endblocktrans %}
-                {% else %}
-                    {% blocktrans with total=request.basket.total_excl_tax|currency:request.basket.currency %}
-                        Total: {{ total }}
-                    {% endblocktrans %}
-                {% endif %}
-            {% endif %}
-        </a>
-
-
-        <div class="navbar-collapse primary-collapse collapse">
-            {% block nav_dropdown %}
-                <ul id="browse" class="nav navbar-nav">
-                    <li class="dropdown active {% if expand_dropdown %}open{% endif %}">
-                        <a href="#" class="dropdown-toggle" {% if not expand_dropdown %} data-toggle="dropdown"{% endif %}>
-                            {% trans "Browse store" %}
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu" data-navigation="dropdown-menu">
-                            {% category_tree depth=2 as tree_categories %}
-                            <li><a tabindex="-1" href="{% url 'catalogue:index' %}">{% trans "All products" %}</a></li>
-                            {% if tree_categories %}
-                                <li class="divider"></li>
-                                {% for tree_category, info in tree_categories %}
-                                    {% if info.has_children %}
-                                        <li class="dropdown-submenu">
-                                            <a tabindex="-1" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a>
-                                            <ul class="dropdown-menu">
-                                            {% else %}
-                                                <li><a tabindex="-1" href="{{ tree_category.get_absolute_url }}">{{ tree_category.name }}</a></li>
-                                            {% endif %}
-
-                                            {% for close in info.num_to_close %}
-                                                </ul></li>
-                                            {% endfor %}
-                                {% endfor %}
-                            {% endif %}
-                            <li class="divider"></li>
-                            {% block nav_dropdown_extra_items %}
-                                <li><a href="{% url 'offer:list' %}">{% trans "Offers" %}</a></li>
-                            {% endblock %}
-                        </ul>
-                    </li>
-                    {% block nav_extra %}
-                    {% endblock %}
-                </ul>
-            {% endblock %}
-            {% include "partials/search.html" %}
-        </div><!-- /navbar-collapse -->
+<div class="row top-menu-bg">
+<div class="col-md-1"></div>
+<div class="col-md-11">
+ <nav class="navbar navbar-default">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
     </div>
-</div><!-- /navbar -->
+    <div class="collapse navbar-collapse js-navbar-collapse">
+      <ul class="nav navbar-nav">
+          {% category_tree depth=1 as tree_categories %}
+          {% if tree_categories %}
+          {% for tree_category, info in tree_categories %}
+        <li class="dropdown mega-dropdown">
+
+          <a href="{{ tree_category.get_absolute_url }}" class="dropdown-toggle" data-toggle="dropdown">{{ tree_category.name }} <span class="glyphicon glyphicon-chevron-down pull-right navbar-chevron"></span></a>
+            <ul class="dropdown-menu mega-dropdown-menu row">
+            <li class="col-sm-3">
+              <ul>
+                <li class="dropdown-header">New in {{ tree_category.name }}</li>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <a href="#"><img src="{% static "gravyboat/img/menu_placeholder_1.png" %}" class="img-responsive" alt="product 1"></a>
+                      <h4><small>Summer dress floral prints</small></h4>
+                      <button class="btn btn-primary" type="button">49,99 €</button>
+                      <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>
+                    </div>
+                    <!-- End Item -->
+                    <div class="item">
+                      <a href="#"><img src="{% static "gravyboat/img/menu_placeholder_2.png" %}" class="img-responsive" alt="product 2"></a>
+                      <h4><small>Gold sandals with shiny touch</small></h4>
+                      <button class="btn btn-primary" type="button">9,99 €</button>
+                      <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>
+                    </div>
+                    <!-- End Item -->
+                    <div class="item">
+                      <a href="#"><img src="{% static "gravyboat/img/menu_placeholder_1.png" %}" class="img-responsive" alt="product 3"></a>
+                      <h4><small>Denin jacket stamped</small></h4>
+                      <button class="btn btn-primary"   type="button">49,99 €</button>
+                      <button href="#" class="btn btn-default" type="button"><span class="glyphicon glyphicon-heart"></span> Add to Wishlist</button>
+                    </div>
+                    <!-- End Item -->
+                  </div>
+                  <!-- End Carousel Inner -->
+                </div>
+                <!-- /.carousel -->
+                <li class="divider"></li>
+                <li><a href="{{ tree_category.get_absolute_url }}">View all Collection <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+              </ul>
+            </li>
+            <li class="col-sm-3">
+              <ul>
+                <li class="dropdown-header">Dresses</li>
+                <li><a href="#">Unique Features</a></li>
+                <li><a href="#">Image Responsive</a></li>
+                <li><a href="#">Auto Carousel</a></li>
+                <li><a href="#">Newsletter Form</a></li>
+                <li><a href="#">Four columns</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Tops</li>
+                <li><a href="#">Good Typography</a></li>
+              </ul>
+            </li>
+            <li class="col-sm-3">
+              <ul>
+                <li class="dropdown-header">Jackets</li>
+                <li><a href="#">Easy to customize</a></li>
+                <li><a href="#">Glyphicons</a></li>
+                <li><a href="#">Pull Right Elements</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Pants</li>
+                    <li><a href="#">Coloured Headers</a></li>
+                <li><a href="#">Primary Buttons & Default</a></li>
+                <li><a href="#">Calls to action</a></li>
+              </ul>
+            </li>
+            <li class="col-sm-3">
+              <ul>
+                <li class="dropdown-header">Accessories</li>
+                <li><a href="#">Default Navbar</a></li>
+                <li><a href="#">Lovely Fonts</a></li>
+                <li><a href="#">Responsive Dropdown </a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Newsletter</li>
+                <form class="form" role="form">
+                  <div class="form-group">
+                    <label class="sr-only" for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                </form>
+              </ul>
+            </li>
+          </ul>
+
+        </li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+
+    </div>
+    <!-- /.nav-collapse -->
+  </nav>
+
+
+</div>
+</div>

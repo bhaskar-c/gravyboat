@@ -115,7 +115,7 @@ class OrderListView(BulkEditMixin, ListView):
     context_object_name = 'orders'
     template_name = 'dashboard/orders/order_list.html'
     form_class = OrderSearchForm
-    paginate_by = settings.OSCAR_DASHBOARD_ITEMS_PER_PAGE
+    paginate_by = settings.GRAVYBOAT_DASHBOARD_ITEMS_PER_PAGE
     actions = ('download_selected_orders', 'change_order_statuses')
 
     def dispatch(self, request, *args, **kwargs):
@@ -171,7 +171,7 @@ class OrderListView(BulkEditMixin, ListView):
             # If the value is two words, then assume they are first name and
             # last name
             parts = data['name'].split()
-            allow_anon = getattr(settings, 'OSCAR_ALLOW_ANON_CHECKOUT', False)
+            allow_anon = getattr(settings, 'GRAVYBOAT_ALLOW_ANON_CHECKOUT', False)
 
             if len(parts) == 1:
                 parts = [data['name'], data['name']]

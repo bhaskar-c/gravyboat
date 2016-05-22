@@ -67,7 +67,7 @@ OrderedProductFormSet = inlineformset_factory(
 class PagePromotionForm(forms.ModelForm):
     page_url = ExtendedURLField(label=_("URL"), verify_exists=True)
     position = forms.CharField(
-        widget=forms.Select(choices=settings.OSCAR_PROMOTION_POSITIONS),
+        widget=forms.Select(choices=settings.GRAVYBOAT_PROMOTION_POSITIONS),
         label=_("Position"),
         help_text=_("Where in the page this content block will appear"))
 

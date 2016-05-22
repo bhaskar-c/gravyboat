@@ -53,7 +53,7 @@ class CheckoutApplication(Application):
         return self.post_process_urls(urls)
 
     def get_url_decorator(self, pattern):
-        if not settings.OSCAR_ALLOW_ANON_CHECKOUT:
+        if not settings.GRAVYBOAT_ALLOW_ANON_CHECKOUT:
             return login_required
         if pattern.name.startswith('user-address'):
             return login_required

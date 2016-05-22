@@ -23,7 +23,7 @@ class VoucherListView(generic.ListView):
     template_name = 'dashboard/vouchers/voucher_list.html'
     form_class = VoucherSearchForm
     description_template = _("%(main_filter)s %(name_filter)s %(code_filter)s")
-    paginate_by = settings.OSCAR_DASHBOARD_ITEMS_PER_PAGE
+    paginate_by = settings.GRAVYBOAT_DASHBOARD_ITEMS_PER_PAGE
 
     def get_queryset(self):
         qs = self.model.objects.all().order_by('-date_created')

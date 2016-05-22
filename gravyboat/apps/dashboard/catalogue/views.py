@@ -471,7 +471,7 @@ class StockAlertListView(generic.ListView):
     template_name = 'dashboard/catalogue/stockalert_list.html'
     model = StockAlert
     context_object_name = 'alerts'
-    paginate_by = settings.OSCAR_STOCK_ALERTS_PER_PAGE
+    paginate_by = settings.GRAVYBOAT_STOCK_ALERTS_PER_PAGE
 
     def get_context_data(self, **kwargs):
         ctx = super(StockAlertListView, self).get_context_data(**kwargs)

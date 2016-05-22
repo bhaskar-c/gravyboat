@@ -2,7 +2,7 @@
 
 from django.conf import settings
 
-if settings.OSCAR_DELETE_IMAGE_FILES:
+if settings.GRAVYBOAT_DELETE_IMAGE_FILES:
 
     from gravyboat.core.loading import get_model
 

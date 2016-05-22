@@ -3584,8 +3584,8 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #ccc;
 }
 .navbar-inverse {
-  background-color: #222;
-  border-color: #080808;
+  background-color: #157ED2;
+
 }
 .navbar-inverse .navbar-brand {
   color: #777777;
@@ -3630,20 +3630,20 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
-  border-color: #101010;
+  border-color: #0F6CB2;
 }
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: #080808;
+  background-color: #0F6CB2;
   color: #fff;
 }
 @media (max-width: 767px) {
   .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
-    border-color: #080808;
+    border-color: #0F6CB2;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
-    background-color: #080808;
+    background-color: #0F6CB2;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
     color: #777777;
@@ -5214,7 +5214,7 @@ h6 {
   font-weight: normal;
 }
 h1 {
-  font-size: 30px;
+  font-size: 22px;
 }
 h2 {
   font-size: 18px;
@@ -5513,18 +5513,14 @@ td .btn-toolbar {
   min-height: 50px;
   font-size: 12px;
   line-height: 1.6666;
-  background-image: -webkit-linear-gradient(top, #373737 0%, #242424 100%);
-  background-image: -o-linear-gradient(top, #373737 0%, #242424 100%);
-  background-image: linear-gradient(to bottom, #373737 0%, #242424 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff373737', endColorstr='#ff242424', GradientType=0);
+  background: #157ED2;
   border: none;
 }
 .navbar-accounts .container-fluid .navbar-brand {
-  background: url("../img/ui/dashboard/logo_gravyboat.png") no-repeat scroll 0 0 transparent;
+  background: url("../img/ui/dashboard/logo.png") no-repeat scroll 0 0 transparent;
   text-indent: -9999px;
   display: block;
-  width: 60px;
+  width: 159px;
   height: 38px;
   padding: 0;
   margin-left: 0;
@@ -5540,13 +5536,8 @@ td .btn-toolbar {
   min-height: 44px;
 }
 .navbar-primary .container-fluid {
-  background-image: -webkit-linear-gradient(top, #353535 0%, #373737 100%);
-  background-image: -o-linear-gradient(top, #353535 0%, #373737 100%);
-  background-image: linear-gradient(to bottom, #353535 0%, #373737 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff353535', endColorstr='#ff373737', GradientType=0);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false) !important;
-  border-top: 1px solid #5B5B5B;
+  background:#0F6CB2;
+  border-top: 1px solid #0F6CB2;
   *position: relative;
   *z-index: 10;
 }
@@ -5556,11 +5547,6 @@ td .btn-toolbar {
 }
 .navbar-primary .nav > li > a {
   margin: 0;
-  border-left: 1px solid #444;
-  border-right: 1px solid #222222;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
   color: #DCDCDC;
   font-size: 12px;
   line-height: 1.2;
@@ -5589,16 +5575,8 @@ td .btn-toolbar {
 .navbar-primary .nav > li > a:hover,
 .navbar-primary .nav .open .dropdown-toggle {
   color: #B2DEF2;
-  background-color: #373737;
-  border-left: 1px solid #444;
-  border-right-color: #222222;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.05);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.05);
-  background-image: -webkit-linear-gradient(top, #1F1F1F 0%, #373737 100%);
-  background-image: -o-linear-gradient(top, #1F1F1F 0%, #373737 100%);
-  background-image: linear-gradient(to bottom, #1F1F1F 0%, #373737 100%);
-  background-repeat: repeat-x;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1f1f1f', endColorstr='#ff373737', GradientType=0);
+  background-color: #157ED2;
+
 }
 .navbar-primary .nav > .active > a:before,
 .navbar-primary .nav > .active > a:hover:before,
@@ -5865,8 +5843,7 @@ caption > i,
 #order_graph .bar-caption h1 {
   font-size: 18px;
   color: #242424;
-  font-weight: bold;
-  text-transform: uppercase;
+
 }
 #order_graph .bar-y-axis {
   position: absolute;

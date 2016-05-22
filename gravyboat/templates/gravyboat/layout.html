@@ -4,7 +4,7 @@
 
 {% block styles %}
     {% comment %}
-        If you are developing Oscar's CSS, or overriding Oscar's CSS
+        If you are developing gravyboat's CSS, or overriding gravyboat's CSS
         files in your project, then set USE_LESS = True in your
         settings file. This will enable the on-the-fly less compiler.
     {% endcomment %}
@@ -13,33 +13,55 @@
     {% else %}
         <link rel="stylesheet" type="text/css" href="{% static "gravyboat/css/styles.css" %}" />
     {% endif %}
-    <link rel="stylesheet" href="{% static "gravyboat/js/bootstrap-datetimepicker/bootstrap-datetimepicker.css" %}" />
-    <link rel="stylesheet" type="text/css" href="{% static "gravyboat/css/datetimepicker.css" %}" />
+
 {% endblock %}
 
 {% block layout %}
+    <div id="total-top" class="text-xs-center">
     {# Top-horizontal bar with account, notifictions, dashboard links #}
+    <div class="row accounts">
     {% include "partials/nav_accounts.html" %}
-
+    </div>
     {# Site logo/title, mini-basket, browse dropdown and searchbox #}
-    <header class="header container-fluid">
+
+    <header id="#header" class="row header-fixed  header hide-from-print">
+        <div class="container-fluid">
+
         <div class="page_inner">
             <div class="row">
                 {% include "partials/brand.html" %}
+                {% include "partials/search.html" %}
                 {# Mini-basket wrapped in a block so some templates can now display it #}
                 {% block mini_basket %}{% include "partials/mini_basket.html" %}{% endblock %}
             </div>
         </div>
-        {% block navigation %}
-            {% include "partials/nav_primary.html" %}
-        {% endblock %}
+
     </header>
+
+        <div class="nav-header">
+            <div id="top-menu">
+                <div class="top-menu-bg">
+                {% block navigation %}
+                    {% include "partials/nav_primary.html" %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block shortcut-bar %}
+        <div class="container-fluid page">
+            <div class="page_inner shortcut">
+                {% block breadcrumbs %}{% endblock %}
+            </div>
+        </div>
+    {% endblock %}
 
     {# Main content of page - other layout templates may override this block #}
     {% block content_wrapper %}
         <div class="container-fluid page">
             <div class="page_inner">
-                {% block breadcrumbs %}{% endblock %}
+
                 {% block header %}
                     <div class="page-header action">
                         <h1>{% block headertext %}{% endblock %}</h1>
@@ -78,18 +100,14 @@
 {# Local scripts #}
 {% block scripts %}
     {{ block.super }}
-    <!-- Twitter Bootstrap -->
     <script type="text/javascript" src="{% static "gravyboat/js/bootstrap3/bootstrap.min.js" %}"></script>
-    <!-- Oscar -->
-    <script src="{% static "gravyboat/js/gravyboat/ui.js" %}" type="text/javascript" charset="utf-8"></script>
-
-    <script src="{% static "gravyboat/js/bootstrap-datetimepicker/bootstrap-datetimepicker.js" %}" type="text/javascript" charset="utf-8"></script>
-    <script src="{% static "gravyboat/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.all.js" %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static "gravyboat/js/gravyboat/ui.js" %}" ></script>
 {% endblock %}
 
 {% block extrascripts %}
     {% include "partials/extrascripts.html" %}
     {{ block.super }}
+    
 {% endblock %}
 
 {% block onbodyload %}

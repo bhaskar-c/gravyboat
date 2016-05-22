@@ -52,7 +52,7 @@ class RegisterUserMixin(object):
         user_registered.send_robust(
             sender=self, request=self.request, user=user)
 
-        if getattr(settings, 'OSCAR_SEND_REGISTRATION_EMAIL', True):
+        if getattr(settings, 'GRAVYBOAT_SEND_REGISTRATION_EMAIL', True):
             self.send_registration_email(user)
 
         # We have to authenticate before login

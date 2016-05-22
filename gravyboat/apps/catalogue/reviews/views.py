@@ -115,7 +115,7 @@ class ProductReviewList(ListView):
     context_object_name = "reviews"
     model = ProductReview
     product_model = Product
-    paginate_by = settings.OSCAR_REVIEWS_PER_PAGE
+    paginate_by = settings.GRAVYBOAT_REVIEWS_PER_PAGE
 
     def get_queryset(self):
         qs = self.model.approved.filter(product=self.kwargs['product_pk'])

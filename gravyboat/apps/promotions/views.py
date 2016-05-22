@@ -1,12 +1,29 @@
 from django.core.urlresolvers import reverse
 from django.views.generic import RedirectView, TemplateView
+from gravyboat.apps.catalogue import models
+from django.views.generic import TemplateView
+from gravyboat.apps.catalogue.models import Category
 
 
 class HomeView(TemplateView):
-    """
-    This is the home page and will typically live at /
-    """
     template_name = 'promotions/home.html'
+
+    def get_context_data(self, **kwargs):
+        category_wise_products = {}
+        categories = Category.objects.all()
+        for category in categories:
+            products_in_this_category_id = models.Product.objects.filter(
+                product_class_id=category.pk)
+            if not products_in_this_category_id:
+                continue
+            category_wise_products[category] = []
+            for product in products_in_this_category_id:
+                category_wise_products[category].append(product)
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['category_wise_products'] = category_wise_products
+        context['latest_products'] = models.Product.objects.filter(
+            parent=None).order_by('-date_created')
+        return context
 
 
 class RecordClickView(RedirectView):

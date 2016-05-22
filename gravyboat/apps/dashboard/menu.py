@@ -11,7 +11,7 @@ def get_nodes(user):
     """
     Return the visible navigation nodes for the passed user
     """
-    all_nodes = create_menu(settings.OSCAR_DASHBOARD_NAVIGATION)
+    all_nodes = create_menu(settings.GRAVYBOAT_DASHBOARD_NAVIGATION)
     visible_nodes = []
     for node in all_nodes:
         filtered_node = node.filter(user)
@@ -28,7 +28,7 @@ def create_menu(menu_items, parent=None):
     """
     nodes = []
     default_fn = import_string(
-        settings.OSCAR_DASHBOARD_DEFAULT_ACCESS_FUNCTION)
+        settings.GRAVYBOAT_DASHBOARD_DEFAULT_ACCESS_FUNCTION)
     for menu_dict in menu_items:
         try:
             label = menu_dict['label']

@@ -215,7 +215,7 @@ class AddToBasketForm(forms.Form):
     def clean_quantity(self):
         # Check that the proposed new line quantity is sensible
         qty = self.cleaned_data['quantity']
-        basket_threshold = settings.OSCAR_MAX_BASKET_QUANTITY_THRESHOLD
+        basket_threshold = settings.GRAVYBOAT_MAX_BASKET_QUANTITY_THRESHOLD
         if basket_threshold:
             total_basket_quantity = self.basket.num_items
             max_allowed = basket_threshold - total_basket_quantity

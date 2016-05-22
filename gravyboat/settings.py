@@ -18,7 +18,9 @@ DEBUG = True
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'public/media')
-MEDIA_URL = '/media/'
+MEDIA_URL = '/public/media/'
+print('MOROOT', MEDIA_ROOT)
+print('Murl', MEDIA_URL)
 
 STATIC_URL = '/gravyboat/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '/gravyboat/')
@@ -113,7 +115,7 @@ DATABASES = {
     }
 }
 
-
+SITE_ID = 1
 AUTHENTICATION_BACKENDS = (
     'gravyboat.apps.customer.auth_backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -133,6 +135,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = False
 USE_L10N = False
 USE_TZ = True
-
+GRAVYBOAT_DEFAULT_CURRENCY = 'INR'
 
 LANGUAGES = (('en', 'English'),)

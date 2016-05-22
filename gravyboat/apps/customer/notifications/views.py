@@ -18,7 +18,7 @@ class NotificationListView(PageTitleMixin, generic.ListView):
     model = Notification
     template_name = 'customer/notifications/list.html'
     context_object_name = 'notifications'
-    paginate_by = settings.OSCAR_NOTIFICATIONS_PER_PAGE
+    paginate_by = settings.GRAVYBOAT_NOTIFICATIONS_PER_PAGE
     page_title = _("Notifications")
     active_tab = 'notifications'
 

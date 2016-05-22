@@ -1,4 +1,4 @@
-{% extends "layout_2_col.html" %}
+{% extends "layout.html" %}
 
 {% load currency_filters %}
 {% load thumbnail %}
@@ -9,17 +9,7 @@
     "{{ query }}" | {{ block.super }}
 {% endblock %}
 
-{% block breadcrumbs %}
-    <ul class="breadcrumb">
-        <li>
-            <a href="{{ homepage_url }}">{% trans "Home" %}</a>
-        </li>
-        <li>
-            {% trans "Search" %}
-        </li>
-        <li class="active">"{{ query }}"</li>
-    </ul>
-{% endblock %}
+
 
 {% block column_left %}
     {% if has_facets %}

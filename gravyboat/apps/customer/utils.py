@@ -83,8 +83,8 @@ class Dispatcher(object):
         """
         Plain email sending to the specified recipient
         """
-        if hasattr(settings, 'OSCAR_FROM_EMAIL'):
-            from_email = settings.OSCAR_FROM_EMAIL
+        if hasattr(settings, 'GRAVYBOAT_FROM_EMAIL'):
+            from_email = settings.GRAVYBOAT_FROM_EMAIL
         else:
             from_email = None
 

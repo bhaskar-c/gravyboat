@@ -29,12 +29,12 @@ def slugify(value):
     """
     # Re-map some strings to avoid important characters being stripped.  Eg
     # remap 'c++' to 'cpp' otherwise it will become 'c'.
-    for k, v in settings.OSCAR_SLUG_MAP.items():
+    for k, v in settings.GRAVYBOAT_SLUG_MAP.items():
         value = value.replace(k, v)
 
     # Allow an alternative slugify function to be specified
     # Recommended way to specify a function is as a string
-    slugifier = getattr(settings, 'OSCAR_SLUG_FUNCTION', default_slugifier)
+    slugifier = getattr(settings, 'GRAVYBOAT_SLUG_FUNCTION', default_slugifier)
     if isinstance(slugifier, six.string_types):
         slugifier = import_string(slugifier)
 
@@ -43,7 +43,7 @@ def slugify(value):
     value = slugifier(unidecode(six.text_type(value)))
 
     # Remove stopwords
-    for word in settings.OSCAR_SLUG_BLACKLIST:
+    for word in settings.GRAVYBOAT_SLUG_BLACKLIST:
         value = value.replace(word + '-', '')
         value = value.replace('-' + word, '')
 
@@ -125,6 +125,6 @@ def get_default_currency():
     """
     For use as the default value for currency fields.  Use of this function
     prevents Django's core migration engine from interpreting a change to
-    OSCAR_DEFAULT_CURRENCY as something it needs to generate a migration for.
+    GRAVYBOAT_DEFAULT_CURRENCY as something it needs to generate a migration for.
     """
-    return settings.OSCAR_DEFAULT_CURRENCY
+    return settings.GRAVYBOAT_DEFAULT_CURRENCY

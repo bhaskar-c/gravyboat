@@ -32,7 +32,7 @@ def usage_statistics_string():
     If you're developing locally or tracking is disabled, the tracker pixel
     does not get rendered and no information is collected.
     """
-    if not settings.DEBUG and getattr(settings, 'OSCAR_TRACKING', True):
+    if not settings.DEBUG and getattr(settings, 'GRAVYBOAT_TRACKING', True):
         params = {
             'django': django.get_version(),
             'python': platform.python_version(),
@@ -49,9 +49,9 @@ def metadata(request):
     """
     return {'display_version': getattr(settings, 'DISPLAY_VERSION', False),
             'version': getattr(settings, 'VERSION', 'N/A'),
-            'shop_name': settings.OSCAR_SHOP_NAME,
-            'shop_tagline': settings.OSCAR_SHOP_TAGLINE,
-            'homepage_url': settings.OSCAR_HOMEPAGE,
+            'shop_name': settings.GRAVYBOAT_SHOP_NAME,
+            'shop_tagline': settings.GRAVYBOAT_SHOP_TAGLINE,
+            'homepage_url': settings.GRAVYBOAT_HOMEPAGE,
             'use_less': getattr(settings, 'USE_LESS', False),
             'call_home': usage_statistics_string(),
             'language_neutral_url_path': strip_language_code(request),

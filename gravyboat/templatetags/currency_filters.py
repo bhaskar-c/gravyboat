@@ -21,8 +21,8 @@ def currency(value, currency=None):
     # Using Babel's currency formatting
     # http://babel.pocoo.org/docs/api/numbers/#babel.numbers.format_currency
     kwargs = {
-        'currency': currency if currency else settings.OSCAR_DEFAULT_CURRENCY,
-        'format': getattr(settings, 'OSCAR_CURRENCY_FORMAT', None),
+        'currency': currency if currency else settings.GRAVYBOAT_DEFAULT_CURRENCY,
+        'format': getattr(settings, 'GRAVYBOAT_CURRENCY_FORMAT', None),
         'locale': to_locale(get_language() or settings.LANGUAGE_CODE),
     }
     return format_currency(value, **kwargs)

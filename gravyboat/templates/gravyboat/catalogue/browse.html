@@ -10,7 +10,7 @@
     {% if summary %}{{ summary }} |{% endif %} {{ block.super }}
 {% endblock %}
 
-{% block headertext %}{{ summary }}{% endblock %}
+
 
 {% block breadcrumbs %}
     <ul class="breadcrumb">
@@ -22,6 +22,7 @@
 {% endblock breadcrumbs %}
 
 {% block column_left %}
+<div class="raised-block">
     {% category_tree as tree_categories %}
     {% if tree_categories %}
         <h4>{% trans "Show results for" %}</h4>
@@ -44,8 +45,12 @@
                 {% endfor %}
             </ul>
         </div>
+  </div>
+<div class="raised-block"></div>
     {% endif %}
+
     {% if has_facets %}
+    <div class="raised-block">
         <h4>{% trans "Refine by" %}</h4>
         <div class="side_categories">
             {% for field, data in facet_data.items %}
@@ -54,11 +59,14 @@
                 {% endif %}
             {% endfor %}
         </div>
+   </div>
     {% endif %}
+
 {% endblock %}
 
 {% block content %}
-
+<div class="raised-block">
+    <h1>{% block headertext %}{{ summary }}{% endblock %}</h1>
     <form method="get" class="form-horizontal">
         {# Render other search params in a hidden block #}
         <div style="display:none">
@@ -99,6 +107,7 @@
             <div>
                 <ol class="row">
                     {% for product in products %}
+
                         <li class="col-xs-6 col-sm-4 col-md-3 col-lg-3">{% render_product product %}</li>
                     {% endfor %}
                 </ol>
@@ -108,7 +117,8 @@
     {% else %}
         <p class="nonefound">{% trans "No products found." %}</p>
     {% endif %}
-
+</div>
+<div class="raised-block">Ooo</div>
 {% endblock content %}
 
 {% block onbodyload %}

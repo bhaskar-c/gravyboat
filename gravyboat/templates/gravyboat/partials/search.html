@@ -1,8 +1,17 @@
 {% load i18n %}
-
-<form method="get" action="{% url 'search:search' %}" class="navbar-form navbar-right">
-    <div class="form-group">
-        {{ search_form.q }}
-    </div>
-    <input type="submit" value="{% trans "Search" %}" class="btn btn-default" />
+<div class="col-md-6">
+<form method="get" action="{% url 'search:search' %}" class="">
+<div class="input-group">
+    <span class="input-group-addon">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+    </span>
+   {{ search_form.q }}
+    <!--<input class="form-control" id="id_q" name="q" placeholder="Search" tabindex="1" type="search">-->
+   <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Search!</button>
+   </span>
+</div>
 </form>
+</div>
+
+

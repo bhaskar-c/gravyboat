@@ -22,7 +22,7 @@ class OfferListView(ListView):
 class OfferDetailView(ListView):
     context_object_name = 'products'
     template_name = 'offer/detail.html'
-    paginate_by = settings.OSCAR_OFFERS_PER_PAGE
+    paginate_by = settings.GRAVYBOAT_OFFERS_PER_PAGE
 
     def get(self, request, *args, **kwargs):
         try:

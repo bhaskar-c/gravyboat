@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% load promotion_tags %}
+
+{% comment %}
+Keep the same header and footer as the standard layout template but override the 
+main content area to split it into a sidebar and a content block
+{% endcomment %}
+{% block content_wrapper %}
+<div class="container-fluid page">
+    <div class="">
+        <div class="row">
+            <div class="col-sm-9 col-md-9">
+                <div class="">
+                {% block header %}
+                <div class="page-header action">
+                    <h1>{% block headertext %}{% endblock %}</h1>
+                </div>
+                {% endblock %}
+                {% include "partials/alert_messages.html" %}
+                <div id="promotions">
+                    {% for promotion in promotions_page %}
+                        {% render_promotion promotion %}
+                    {% endfor %}
+                </div>
+               {% block content %}{% endblock %}
+                </div>
+            </div>
+            <aside class="sidebar col-sm-3 col-md-3">
+                <div class="">
+                {# Render promotions at the top of the right-hand sidebar #}
+                <div id="promotions_right">
+                    {% for promotion in promotions_right %}
+                        {% render_promotion promotion %}
+                    {% endfor %}
+                </div>
+                {% block column_right %}{% endblock %}
+                    </div>
+            </aside>
+        </div><!-- /row -->
+    </div><!-- /page_inner -->
+</div><!-- /container-fluid -->
+{% endblock %}

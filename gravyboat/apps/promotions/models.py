@@ -178,7 +178,7 @@ class Image(AbstractPromotion):
         _('Link URL'), blank=True,
         help_text=_('This is where this promotion links to'))
     image = models.ImageField(
-        _('Image'), upload_to=settings.OSCAR_PROMOTION_FOLDER,
+        _('Image'), upload_to=settings.GRAVYBOAT_PROMOTION_FOLDER,
         max_length=255)
     date_created = models.DateTimeField(auto_now_add=True)
 

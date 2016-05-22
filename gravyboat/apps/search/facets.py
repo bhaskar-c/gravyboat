@@ -10,10 +10,10 @@ def base_sqs():
     Return the base SearchQuerySet for Haystack searches.
     """
     sqs = SearchQuerySet()
-    for facet in settings.OSCAR_SEARCH_FACETS['fields'].values():
+    for facet in settings.GRAVYBOAT_SEARCH_FACETS['fields'].values():
         options = facet.get('options', {})
         sqs = sqs.facet(facet['field'], **options)
-    for facet in settings.OSCAR_SEARCH_FACETS['queries'].values():
+    for facet in settings.GRAVYBOAT_SEARCH_FACETS['queries'].values():
         for query in facet['queries']:
             sqs = sqs.query_facet(facet['field'], query[1])
     return sqs
@@ -36,7 +36,7 @@ class FacetMunger(object):
         return facet_data
 
     def munge_field_facets(self, clean_data):
-        for key, facet in settings.OSCAR_SEARCH_FACETS['fields'].items():
+        for key, facet in settings.GRAVYBOAT_SEARCH_FACETS['fields'].items():
             self.munge_field_facet(key, facet, clean_data)
 
     def munge_field_facet(self, key, facet, clean_data):
@@ -72,14 +72,14 @@ class FacetMunger(object):
             clean_data[key]['results'].append(datum)
 
     def munge_query_facets(self, clean_data):
-        for key, facet in settings.OSCAR_SEARCH_FACETS['queries'].items():
+        for key, facet in settings.GRAVYBOAT_SEARCH_FACETS['queries'].items():
             self.munge_query_facet(key, facet, clean_data)
 
     def munge_query_facet(self, key, facet, clean_data):
         clean_data[key] = {
             'name': facet['name'],
             'results': []}
-        # Loop over the queries in OSCAR_SEARCH_FACETS rather than the returned
+        # Loop over the queries in GRAVYBOAT_SEARCH_FACETS rather than the returned
         # facet information from the search backend.
         for field_value, query in facet['queries']:
             field_name = '%s_exact' % facet['field']

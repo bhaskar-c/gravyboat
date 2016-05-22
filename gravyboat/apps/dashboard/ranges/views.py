@@ -182,7 +182,7 @@ class RangeProductListView(BulkEditMixin, ListView):
 
     def create_upload_object(self, request, range):
         f = request.FILES['file_upload']
-        destination_path = os.path.join(settings.OSCAR_UPLOAD_ROOT, f.name)
+        destination_path = os.path.join(settings.GRAVYBOAT_UPLOAD_ROOT, f.name)
         with open(destination_path, 'wb+') as dest:
             for chunk in f.chunks():
                 dest.write(chunk)

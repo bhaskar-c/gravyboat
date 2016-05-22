@@ -662,13 +662,13 @@ class AbstractProduct(models.Model):
         """
         Determines whether a user may add a review on this product.
 
-        Default implementation respects OSCAR_ALLOW_ANON_REVIEWS and only
+        Default implementation respects GRAVYBOAT_ALLOW_ANON_REVIEWS and only
         allows leaving one review per user and product.
 
         Override this if you want to alter the default behaviour; e.g. enforce
         that a user purchased the product to be allowed to leave a review.
         """
-        if user.is_authenticated() or settings.OSCAR_ALLOW_ANON_REVIEWS:
+        if user.is_authenticated() or settings.GRAVYBOAT_ALLOW_ANON_REVIEWS:
             return not self.has_review_by(user)
         else:
             return False
@@ -953,10 +953,10 @@ class AbstractProductAttributeValue(models.Model):
         'catalogue.AttributeOption', blank=True, null=True,
         verbose_name=_("Value option"))
     value_file = models.FileField(
-        upload_to=settings.OSCAR_IMAGE_FOLDER, max_length=255,
+        upload_to=settings.GRAVYBOAT_IMAGE_FOLDER, max_length=255,
         blank=True, null=True)
     value_image = models.ImageField(
-        upload_to=settings.OSCAR_IMAGE_FOLDER, max_length=255,
+        upload_to=settings.GRAVYBOAT_IMAGE_FOLDER, max_length=255,
         blank=True, null=True)
     value_entity = GenericForeignKey(
         'entity_content_type', 'entity_object_id')
@@ -1131,7 +1131,7 @@ class MissingProductImage(object):
     """
 
     def __init__(self, name=None):
-        self.name = name if name else settings.OSCAR_MISSING_IMAGE_URL
+        self.name = name if name else settings.GRAVYBOAT_MISSING_IMAGE_URL
         media_file_path = os.path.join(settings.MEDIA_ROOT, self.name)
         # don't try to symlink if MEDIA_ROOT is not set (e.g. running tests)
         if settings.MEDIA_ROOT and not os.path.exists(media_file_path):
@@ -1164,7 +1164,7 @@ class AbstractProductImage(models.Model):
     product = models.ForeignKey(
         'catalogue.Product', related_name='images', verbose_name=_("Product"))
     original = models.ImageField(
-        _("Original"), upload_to=settings.OSCAR_IMAGE_FOLDER, max_length=255)
+        _("Original"), upload_to=settings.GRAVYBOAT_IMAGE_FOLDER, max_length=255)
     caption = models.CharField(_("Caption"), max_length=200, blank=True)
 
     #: Use display_order to determine which is the "primary" image

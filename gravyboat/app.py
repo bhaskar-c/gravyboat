@@ -61,3 +61,4 @@ class Shop(Application):
         return urls
 
 application = Shop()
+

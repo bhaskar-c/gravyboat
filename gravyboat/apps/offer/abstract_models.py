@@ -570,8 +570,8 @@ class AbstractBenefit(models.Model):
         """
         Apply rounding to discount amount
         """
-        if hasattr(settings, 'OSCAR_OFFER_ROUNDING_FUNCTION'):
-            return settings.OSCAR_OFFER_ROUNDING_FUNCTION(amount)
+        if hasattr(settings, 'GRAVYBOAT_OFFER_ROUNDING_FUNCTION'):
+            return settings.GRAVYBOAT_OFFER_ROUNDING_FUNCTION(amount)
         return amount.quantize(D('.01'), ROUND_DOWN)
 
     def _effective_max_affected_items(self):

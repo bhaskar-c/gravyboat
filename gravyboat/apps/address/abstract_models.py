@@ -30,7 +30,7 @@ class AbstractAddress(models.Model):
         (DR, _("Dr")),
     )
 
-    POSTCODE_REQUIRED = 'postcode' in settings.OSCAR_REQUIRED_ADDRESS_FIELDS
+    POSTCODE_REQUIRED = 'postcode' in settings.GRAVYBOAT_REQUIRED_ADDRESS_FIELDS
 
     # Regex for each country. Not listed countries don't use postcodes
     # Based on http://en.wikipedia.org/wiki/List_of_postal_codes

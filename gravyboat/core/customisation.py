@@ -69,7 +69,7 @@ def fork_app(label, folder_path, logger=None):
         logger = logging.getLogger(__name__)
 
     # Check label is valid
-    valid_labels = [x.replace('gravyboat.apps.', '') for x in gravyboat.OSCAR_CORE_APPS
+    valid_labels = [x.replace('gravyboat.apps.', '') for x in gravyboat.GRAVYBOAT_CORE_APPS
                     if x.startswith('gravyboat')]
     if label not in valid_labels:
         raise ValueError("There is no Oscar app that matches '%s'" % label)

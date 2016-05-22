@@ -25,7 +25,7 @@ def extract(request, response=None):
     Extract the IDs of products in the history cookie
     """
     ids = []
-    cookie_name = settings.OSCAR_RECENTLY_VIEWED_COOKIE_NAME
+    cookie_name = settings.GRAVYBOAT_RECENTLY_VIEWED_COOKIE_NAME
     if cookie_name in request.COOKIES:
         try:
             ids = json.loads(request.COOKIES[cookie_name])
@@ -44,7 +44,7 @@ def add(ids, new_id):
     """
     Add a new product ID to the list of product IDs
     """
-    max_products = settings.OSCAR_RECENTLY_VIEWED_PRODUCTS
+    max_products = settings.GRAVYBOAT_RECENTLY_VIEWED_PRODUCTS
     if new_id in ids:
         ids.remove(new_id)
     ids.append(new_id)
@@ -61,8 +61,8 @@ def update(product, request, response):
     ids = extract(request, response)
     updated_ids = add(ids, product.id)
     response.set_cookie(
-        settings.OSCAR_RECENTLY_VIEWED_COOKIE_NAME,
+        settings.GRAVYBOAT_RECENTLY_VIEWED_COOKIE_NAME,
         json.dumps(updated_ids),
-        max_age=settings.OSCAR_RECENTLY_VIEWED_COOKIE_LIFETIME,
-        secure=settings.OSCAR_RECENTLY_VIEWED_COOKIE_SECURE,
+        max_age=settings.GRAVYBOAT_RECENTLY_VIEWED_COOKIE_LIFETIME,
+        secure=settings.GRAVYBOAT_RECENTLY_VIEWED_COOKIE_SECURE,
         httponly=True)

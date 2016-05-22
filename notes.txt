@@ -1,0 +1,14 @@
+sudo su - postgres
+psql
+http://blog.jasonmeridth.com/posts/postgresql-command-line-cheat-sheet/
+
+connect to database
+    postgres=# \c <databasename>
+
+list tables in connected database
+    postgres=# \dt
+
+list columns on table
+    postgres=# \d <tablename>
+
+SELECT * FROM auth_user
