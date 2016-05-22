@@ -10,10 +10,16 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         category_wise_products = {}
-        categories = Category.objects.all()
+        # depth, description, id, image, includes, name, numchild, path, product, productcategory, slug
+        categories = Category.objects.filter(depth=1)
         for category in categories:
             products_in_this_category_id = models.Product.objects.filter(
-                product_class_id=category.pk)
+                categories=category.pk)
+            # Choices are: attribute_values, attributes, basket_lines, categories, children, date_created, date_updated,
+            # description, excludes, handpickedproductlist, id, images, includes, is_discountable, line, orderedproduct,
+            # parent, parent_id, primary_recommendations, product, product_class, product_class_id, product_options,
+            # productalert, productcategory, productrecommendation, rangeproduct, rating, recommended_products, reviews,
+            #  singleproduct, slug, stats, stockrecords, structure, title, upc, userproductview, wishlists_lines
             if not products_in_this_category_id:
                 continue
             category_wise_products[category] = []

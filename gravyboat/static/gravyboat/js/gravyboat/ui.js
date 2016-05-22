@@ -288,7 +288,7 @@ var gravyboat = (function(o, $) {
                     'language': o.datetimepickers.options.languageCode,
                     'minView': 2
                 };
-                $dates = $(el).find('[data-oscarWidget="date"]').not('.no-widget-init').not('.no-widget-init *');
+                $dates = $(el).find('[data-gravyboatWidget="date"]').not('.no-widget-init').not('.no-widget-init *');
                 $dates.each(function(ind, ele) {
                     var $ele = $(ele),
                         config = $.extend({}, defaultDatepickerConfig, {
@@ -303,7 +303,7 @@ var gravyboat = (function(o, $) {
                     'autoclose': true,
                     'language': o.datetimepickers.options.languageCode
                 };
-                $datetimes = $(el).find('[data-oscarWidget="datetime"]').not('.no-widget-init').not('.no-widget-init *');
+                $datetimes = $(el).find('[data-gravyboatWidget="datetime"]').not('.no-widget-init').not('.no-widget-init *');
                 $datetimes.each(function(ind, ele) {
                     var $ele = $(ele),
                         config = $.extend({}, defaultDatetimepickerConfig, {
@@ -319,7 +319,7 @@ var gravyboat = (function(o, $) {
                     'autoclose': true,
                     'language': o.datetimepickers.options.languageCode
                 };
-                $times = $(el).find('[data-oscarWidget="time"]').not('.no-widget-init').not('.no-widget-init *')
+                $times = $(el).find('[data-gravyboatWidget="time"]').not('.no-widget-init').not('.no-widget-init *')
                 $times.each(function(ind, ele) {
                     var $ele = $(ele),
                         config = $.extend({}, defaultTimepickerConfig, {

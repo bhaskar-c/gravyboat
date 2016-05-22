@@ -7,7 +7,7 @@ the sandbox site.
 
 When building your own project, it is not recommended to use these files
 straight from the package.  Rather, you should take a static copy of the
-``oscar/static/oscar`` folder and commit it into your project.  
+``gravyboat/static/gravyboat`` folder and commit it into your project.
 
 This is because the link with upstream project is not really helpful for
 statics.  When you upgrade Oscar, the updated CSS files may not work with your

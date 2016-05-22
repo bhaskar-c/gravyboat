@@ -19,8 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'public/media')
 MEDIA_URL = '/public/media/'
-print('MOROOT', MEDIA_ROOT)
-print('Murl', MEDIA_URL)
 
 STATIC_URL = '/gravyboat/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '/gravyboat/')
