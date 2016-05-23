@@ -18,18 +18,21 @@ from gravyboat.core import ajax
 from gravyboat.core.loading import get_class, get_classes, get_model
 from gravyboat.core.utils import redirect_to_referrer, safe_referrer
 
-from gravyboat.apps.offer.utils import Applicator
-from gravyboat.apps.basket.forms import BasketLineFormSet, BasketLineForm, AddToBasketForm, BasketVoucherForm, SavedLineFormSet, SavedLineForm
-from gravyboat.apps.shipping.repository import Repository
-from gravyboat.apps.checkout.calculators import OrderTotalCalculator
-from gravyboat.apps.basket.utils import BasketMessageGenerator
-from gravyboat.apps.basket.models import Line as model
-from gravyboat.apps.basket.models import Basket as basket_model
-from gravyboat.apps.catalogue.models import Product as product_model
-from gravyboat.apps.voucher.models import Voucher as voucher_model
+Applicator = get_class('offer.utils', 'Applicator')
+(BasketLineFormSet, BasketLineForm, AddToBasketForm, BasketVoucherForm,
+ SavedLineFormSet, SavedLineForm) \
+    = get_classes('basket.forms', ('BasketLineFormSet', 'BasketLineForm',
+                                   'AddToBasketForm', 'BasketVoucherForm',
+                                   'SavedLineFormSet', 'SavedLineForm'))
+Repository = get_class('shipping.repository', ('Repository'))
+OrderTotalCalculator = get_class(
+    'checkout.calculators', 'OrderTotalCalculator')
+BasketMessageGenerator = get_class('basket.utils', 'BasketMessageGenerator')
+
 
 class BasketView(ModelFormSetView):
-
+    model = get_model('basket', 'Line')
+    basket_model = get_model('basket', 'Basket')
     formset_class = BasketLineFormSet
     form_class = BasketLineForm
     extra = 0
@@ -113,9 +116,9 @@ class BasketView(ModelFormSetView):
 
         if self.request.user.is_authenticated():
             try:
-                saved_basket = basket_model.saved.get(
+                saved_basket = self.basket_model.saved.get(
                     owner=self.request.user)
-            except basket_model.DoesNotExist:
+            except self.basket_model.DoesNotExist:
                 pass
             else:
                 saved_basket.strategy = self.request.basket.strategy
@@ -238,14 +241,13 @@ class BasketAddView(FormView):
     a templatetag from module basket_tags.py.
     """
     form_class = AddToBasketForm
-
-
+    product_model = get_model('catalogue', 'product')
     add_signal = signals.basket_addition
     http_method_names = ['post']
 
     def post(self, request, *args, **kwargs):
         self.product = shortcuts.get_object_or_404(
-            product_model, pk=kwargs['pk'])
+            self.product_model, pk=kwargs['pk'])
         return super(BasketAddView, self).post(request, *args, **kwargs)
 
     def get_form_kwargs(self):
@@ -298,7 +300,7 @@ class BasketAddView(FormView):
 
 class VoucherAddView(FormView):
     form_class = BasketVoucherForm
-
+    voucher_model = get_model('voucher', 'voucher')
     add_signal = signals.voucher_addition
 
     def get(self, request, *args, **kwargs):
@@ -363,8 +365,8 @@ class VoucherAddView(FormView):
                   "your basket") % {'code': code})
         else:
             try:
-                voucher = voucher_model._default_manager.get(code=code)
-            except voucher_model.DoesNotExist:
+                voucher = self.voucher_model._default_manager.get(code=code)
+            except self.voucher_model.DoesNotExist:
                 messages.error(
                     self.request,
                     _("No voucher found with code '%(code)s'") % {
@@ -379,6 +381,7 @@ class VoucherAddView(FormView):
 
 
 class VoucherRemoveView(View):
+    voucher_model = get_model('voucher', 'voucher')
     remove_signal = signals.voucher_removal
     http_method_names = ['post']
 
@@ -406,7 +409,8 @@ class VoucherRemoveView(View):
 
 
 class SavedView(ModelFormSetView):
-
+    model = get_model('basket', 'line')
+    basket_model = get_model('basket', 'basket')
     formset_class = SavedLineFormSet
     form_class = SavedLineForm
     extra = 0
@@ -417,10 +421,10 @@ class SavedView(ModelFormSetView):
 
     def get_queryset(self):
         try:
-            saved_basket = basket_model.saved.get(owner=self.request.user)
+            saved_basket = self.basket_model.saved.get(owner=self.request.user)
             saved_basket.strategy = self.request.strategy
             return saved_basket.all_lines()
-        except basket_model.DoesNotExist:
+        except self.basket_model.DoesNotExist:
             return []
 
     def get_success_url(self):

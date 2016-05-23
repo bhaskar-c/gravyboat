@@ -22,7 +22,7 @@
 {% endblock breadcrumbs %}
 
 {% block column_left %}
-<div class="raised-block">
+<div class="raised-block padded-content">
     {% category_tree as tree_categories %}
     {% if tree_categories %}
         <h4>{% trans "Show results for" %}</h4>
@@ -50,7 +50,7 @@
     {% endif %}
 
     {% if has_facets %}
-    <div class="raised-block">
+    <div class="raised-block padded-content">
         <h4>{% trans "Refine by" %}</h4>
         <div class="side_categories">
             {% for field, data in facet_data.items %}
@@ -65,7 +65,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="raised-block">
+<div class="raised-block padded-content">
     <h1>{% block headertext %}{{ summary }}{% endblock %}</h1>
     <form method="get" class="form-horizontal">
         {# Render other search params in a hidden block #}

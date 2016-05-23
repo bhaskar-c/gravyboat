@@ -6,11 +6,11 @@ from django.utils.translation import ugettext_lazy as _
 
 from gravyboat.core.loading import get_class, get_model
 
-from gravyboat.apps.offer.utils import  Applicator
-from gravyboat.apps.basket.models import Basket
-from gravyboat.apps.partner.strategy import Selector
 
 
+Applicator = get_class('offer.utils', 'Applicator')
+Basket = get_model('basket', 'basket')
+Selector = get_class('partner.strategy', 'Selector')
 
 selector = Selector()
 

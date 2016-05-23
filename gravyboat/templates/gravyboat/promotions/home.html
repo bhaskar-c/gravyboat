@@ -60,7 +60,9 @@
 <div class="raised-block padded-content">
 	<h3> New Products</h3>
     {% for product in latest_products %}
-        <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{% render_bare_product product %}</li>
+		<ul class="list-unstyled">
+        	<li class="col-lg-3">{% render_bare_product product %}</li>
+		</ul>
     {% endfor %}
 
 </div>
@@ -68,12 +70,12 @@
           {% for category, products in category_wise_products.items %}
             <div class="raised-block padded-content">
                 	<h3> {{category }} <span class="label label-primary pull-right"><a href="catalogue/category/{{category.slug}}_{{category.pk}}/">View all</a></span></h3>
-                <ul class="list-inline">
+					<ul class="list-unstyled">
                     {% for product in products %}
-                        <li class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{% render_bare_product product %}</li>
+                        <li class="col-lg-3">{% render_bare_product product %}</li>
                     {% endfor %}
+					</ul>
 
-                </ul>
             </div>
           {% endfor %}
 
