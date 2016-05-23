@@ -23,6 +23,7 @@
 {% endblock %}
 
 {% block tabcontent %}
+<div class="raised-block padded-content">
     <form action="." method="post" data-behaviours="lock">
         {% csrf_token %}
         {% if not wishlist %}
@@ -41,4 +42,5 @@
             {% trans "or" %} <a href="#" onclick="history.go(-1);return false" >{% trans "cancel" %}</a>.
         </div>
     </form>
+    </div>
 {% endblock tabcontent %}

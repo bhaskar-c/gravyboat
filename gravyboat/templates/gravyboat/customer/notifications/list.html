@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block tabcontent %}
-
+<div class="raised-block padded-content">
     <ul class="nav nav-tabs">
         <li class="{% if list_type == 'inbox' %}active{% endif %}"><a href="{% url 'customer:notifications-inbox' %}">{% trans 'Inbox' %}</a></li>
         <li class="{% if list_type == 'archive' %}active{% endif %}"><a href="{% url 'customer:notifications-archive' %}">{% trans 'Archive' context 'noun' %}</a></li>
@@ -55,7 +55,7 @@
     {% else %}
         <p>{% trans "There are no notifications to display." %}</p>
     {% endif %}
-
+</div>
 {% endblock tabcontent %}
 
 {% block onbodyload %}

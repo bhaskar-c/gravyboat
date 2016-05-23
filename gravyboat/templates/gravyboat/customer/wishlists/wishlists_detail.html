@@ -21,6 +21,7 @@
 {% endblock %}
 
 {% block tabcontent %}
+<div class="raised-block padded-content">
     {% if form.total_form_count %}
         <form class="stacked" method="post">
             {{ form.management_form }}
@@ -108,5 +109,5 @@
     {% else %}
         {% trans "Your wish list is empty." %}
     {% endif %}
-
+</div>
 {% endblock tabcontent %}

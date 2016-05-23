@@ -12,6 +12,7 @@ class HomeView(TemplateView):
         category_wise_products = {}
         # depth, description, id, image, includes, name, numchild, path, product, productcategory, slug
         categories = Category.objects.filter(depth=1)
+        our_handpicked_products = []
         for category in categories:
             products_in_this_category_id = models.Product.objects.filter(
                 categories=category.pk)
@@ -25,10 +26,16 @@ class HomeView(TemplateView):
             category_wise_products[category] = []
             for product in products_in_this_category_id:
                 category_wise_products[category].append(product)
+                attr_val = product.attribute_values.get(attribute__code='is_featured')
+                if attr_val.value:
+                    print('yes')
+                    our_handpicked_products.append(product)
+            print(our_handpicked_products)
         context = super(HomeView, self).get_context_data(**kwargs)
         context['category_wise_products'] = category_wise_products
         context['latest_products'] = models.Product.objects.filter(
             parent=None).order_by('-date_created')
+        context['our_handpicked_products'] = our_handpicked_products
         return context
 
 

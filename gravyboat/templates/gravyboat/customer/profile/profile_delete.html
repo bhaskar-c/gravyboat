@@ -2,6 +2,7 @@
 {% load i18n %}
 
 {% block tabcontent %}
+<div class="raised-block padded-content">
     <p>{% trans "Please confirm your password to delete your profile." %}</p>
     <form id="delete_profile_form" action="." method="post" class="form-horizontal">
         {% csrf_token %}
@@ -18,4 +19,5 @@
             {% trans "or" %} <a href="{% url "customer:profile-view" %}">{% trans "cancel" %}</a>.
         </div>
     </form>
+</div>
 {% endblock tabcontent %}

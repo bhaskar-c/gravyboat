@@ -2,5 +2,7 @@
 {% load i18n %}
 
 {% block tabcontent %}
+<div class="raised-block padded-content">
     {% include 'partials/form.html' with form_id="profile_form" action="." %}
+</div>
 {% endblock tabcontent %}

@@ -58,7 +58,17 @@
 
 </div>
 <div class="raised-block padded-content">
-	<h3> New Products</h3>
+	<h3> Handpicked for you</h3>
+    {% for product in our_handpicked_products %}
+		<ul class="list-unstyled">
+        	<li class="col-lg-3">{% render_bare_product product %}</li>
+		</ul>
+    {% endfor %}
+
+</div>
+
+<div class="raised-block padded-content">
+	<h3> New Arrivals</h3>
     {% for product in latest_products %}
 		<ul class="list-unstyled">
         	<li class="col-lg-3">{% render_bare_product product %}</li>

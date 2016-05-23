@@ -2,6 +2,7 @@
 {% load i18n %}
 
 {% block tabcontent %}
+<div class="raised-block padded-content">
     {% if not alerts %}
         <p>{% trans "You do not have any active alerts for out-of-stock products." %}</p>
     {% else %}
@@ -35,5 +36,5 @@
             {% include "partials/pagination.html" %}
         </form>
     {% endif %}
-
+</div>
 {% endblock tabcontent %}

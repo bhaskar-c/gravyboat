@@ -5,20 +5,28 @@
 
 {% block layout %}
 
-    <header class="header container-fluid">
+
+    <header id="#header" class="row header-fixed  header hide-from-print">
+        <div class="container-fluid">
+            <div class="row accounts">
+            {% include "partials/nav_accounts.html" %}
+            </div>
+
         <div class="page_inner">
             <div class="row">
                 {% include "partials/brand.html" %}
-            </div><!-- /row -->
+            </div>
         </div>
-        {% block checkout_nav %}{% endblock %}
-    </header><!-- /header -->
-
+        </div>
+    </header>
+    <div class ="raised-block">
+    </div>
     <div class="container-fluid page">
-       <div class="page_inner">
+       <div class="raised-block padded-content">
             {% include 'partials/alert_messages.html' %}
 
             <div class="sub-header">
+                {% block checkout_nav %}{% endblock %}
                 <h1>{% block checkout_title %}{% endblock %}</h1>
             </div>
 

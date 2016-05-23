@@ -2,6 +2,7 @@
 {% load i18n %}
 
 {% block tabcontent %}
+<div class="raised-block padded-content">
     {% if emails %}
         <table class="table table-striped table-bordered">
             <thead>
@@ -25,4 +26,5 @@
     {% else %}
         <p>{% trans 'No emails found' %}</p>
     {% endif %}
+</div>
 {% endblock tabcontent %}

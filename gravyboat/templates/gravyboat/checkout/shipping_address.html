@@ -9,7 +9,9 @@
     {% include 'checkout/nav.html' with step=1 %}
 {% endblock %}
 
-{% block checkout_title %}{% trans "Shipping address" %}{% endblock %}
+{% block checkout_title %}
+    {% trans "Shipping address" %}
+{% endblock %}
 
 {% block order_contents %}{% endblock %}
 
